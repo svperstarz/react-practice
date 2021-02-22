@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useCallback, useState } from "react";
+import Search from "./Search";
+import Chart from "./Chart";
 
-function App() {
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+
+const App = () => {
+  const [symbol, setSymbol] = useState('');
+
+  const handleSymbolChange = useCallback((text) => {
+    setSymbol(text);
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Search onSymbolChange={handleSymbolChange} />
+      <Chart symbol={symbol} />
+    </>
   );
-}
+};
 
 export default App;
